@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet"  href="stylesheets/bootstrap.min.css">
+	<title>Dashboard</title>
+	<style>
+		body{
+			padding-top: 50px;
+		    z-index:0;
+		}
+		.input-url{
+			font-size: x-large;
+			border-radius: 100px;
+			border:none;
+		}
+		
+		footer{
+			margin-top: 175px;	
+		}
+		
+	</style>
+</head>
+<body>
+    <nav class="mr-auto navbar navbar-dark navbar-expand-sm bg-dark fixed-top">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="container">
+	<a class="navbar-brand" href="#">Url Shotner</a>
+	<div class="collapse navbar-collapse" id="Navbar">
+		<ul class="navbar-nav mr-auto">
+        <li class="nav-item active"><a class="nav-link active" href="/dashboard">Dashboard</a></li>		
+		</ul>
+		</div>
+	</div>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-6 offset-5">
+				<h2>
+					Dashboard
+				</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-10">
+				<table class="table table-dark table-striped table-hover">
+					<thead>
+					  <tr>
+						<th scope="col">#</th>
+						<th scope="col">Original Url</th>
+						<th scope="col">Short Url</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  {{#each url}}
+					  <tr>
+						<th scope="row">{{@index}}</th>
+						<td>this.originalUrl</td>
+						<td>this.shortUrl</td>
+					  </tr>
+					  {{/each}}
+					  
+					</tbody>
+				  </table>
+	
+			</div>
+			
+		</div>
+	</div>
+
+
+			
+	</main>
+	<footer class="footer">
+        <div class="container">
+            <div class="row">             
+                <div class="col-12 text-center">
+                    <div>
+						<a href="http://instagram.com/arsh.kk">Instagram</a>
+						<span> 	</span>
+                        <a href="http://www.linkedin.com/in/">LinkedIn</a>
+                        <a href="mailto:arshdeep.cs.17@nitj.ac.in">Mail</a>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </footer>
+    <script src="javascripts/jquery.slim.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+</body>
+</html>
