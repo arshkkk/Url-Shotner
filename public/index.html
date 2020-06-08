@@ -11,10 +11,13 @@
 		    z-index:0;
 			background: darkslategrey;
 		}
+		.input-url:focus,
 		.input-url{
 			font-size: x-large;
 			border-radius: 100px;
 			border:none;
+			color:whitesmoke;
+			background-color: rgba(117, 112, 112, 0.363);
 		}
 		.jumbotron{
 			background-color: whitesmoke;
@@ -65,10 +68,10 @@
 	<main class="container main">
 		<form action="/createShort" method="post">
 			<div class="row justify-content-center">
-				<input  onchange="fun()" id="link" placeholder="Enter Your Link or Url" name="originalUrl" type="text" class="bg-dark form-control input-url col-12 col-md-10 text-center">
+				<input  onchange="fun()" id="link" placeholder="Enter Your Link or Url" name="originalUrl" type="text" class="form-control input-url col-12 col-md-10 text-center">
 			</div>
 			<div class="row justify-content-center mt-3">
-				<button	type="button" type="submit" class="btn btn-success col-3">Generate Url</button>
+				<button	type="submit" type="submit" class="btn btn-success col-3">Generate Url</button>
 			</div>
 		</form>
 			
@@ -93,15 +96,14 @@
 	<script src="javascripts/bootstrap.min.js"></script>
 	<script>
 		function fun(){
-			console.log('jdjfkld')
-			// 	var inputLink = document.getElementById("link")
-	// 	var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    // '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    // '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    // '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    // '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    // '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-	// 	alert(!!pattern.test(inputLink.value));
+		var inputLink = document.getElementById("link")
+		var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+		alert(!!pattern.test(inputLink.value));
 		}
 		
 	</script>
