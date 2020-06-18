@@ -1,4 +1,4 @@
 module.exports = {
-    mongoUrl:'mongodb://localhost:27017/Url_Shotner',
-    host:'http://localhost:3000'
+    mongoUrl:process.env.mongoUrl||'mongodb://localhost:27017/Url_Shotner',
+    host:process.env.host||'http://localhost:3000'
 }

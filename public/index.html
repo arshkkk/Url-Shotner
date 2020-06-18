@@ -66,9 +66,9 @@
 	</header>
 
 	<main class="container main">
-		<form action="/createShort" method="post">
+		<form action="/createShort" method="post" onsubmit="()=>fun('arsh')">
 			<div class="row justify-content-center">
-				<input  onchange="fun()" id="link" placeholder="Enter Your Link or Url" name="originalUrl" type="text" class="form-control input-url col-12 col-md-10 text-center">
+				<input id="link" placeholder="Enter Your Link or Url" name="originalUrl" type="text" class="form-control input-url col-12 col-md-10 text-center">
 			</div>
 			<div class="row justify-content-center mt-3">
 				<button	type="submit" type="submit" class="btn btn-success col-3">Generate Url</button>
@@ -95,7 +95,8 @@
 	<script src="javascript/popper.min.js"></script>
 	<script src="javascripts/bootstrap.min.js"></script>
 	<script>
-		function fun(){
+
+		function validLink(){
 		var inputLink = document.getElementById("link")
 		var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
@@ -103,7 +104,19 @@
     '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
     '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-		alert(!!pattern.test(inputLink.value));
+		return !!pattern.test(inputLink.value);
+	}
+
+		const fun =(event)=>{
+			console.log('clicked')
+		if(!validLink()){
+
+			alert('Not a valid Url')
+
+		}
+
+		event.preventDefault()
+		
 		}
 		
 	</script>

@@ -55,7 +55,6 @@ exports.redirectShortUrl = (req,res,next)=>{
             responseType:'json',
           }).then(result=>{
 
-                console.log(result.data.res)
                 res.redirect(`http://${result.data.res.originalUrl}`)
           })
           .catch(err=>{
