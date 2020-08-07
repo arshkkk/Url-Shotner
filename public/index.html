@@ -82,7 +82,7 @@
 				<button type="button" id = "copy" onclick="copyText('shortLink')">Copy</button>
 			</div>
 			<div class="row justify-content-center mt-3">
-				<button type="submit" type="submit" class="btn btn-success col-3">Generate Url</button>
+				<button type="submit" type="submit" class="btn btn-success col-3" id="gUrl">Generate</button>
 			</div>
 		</form>
 			
@@ -126,11 +126,15 @@ async function postData(){
 	}
 		
 		function submitting(){
+			document.getElementById('gUrl').disabled = true
+			document.getElementById('gUrl').innerText = 'Getting it short'
 			event.preventDefault()
 			var element = document.getElementById("link");
 		
 		if(!validLink()){
 		element.classList.add("is-invalid");
+		document.getElementById('generateUrl').disabled = false
+
 	}
 
 		else{
@@ -143,9 +147,15 @@ async function postData(){
 			shortLink.value = 'https://url-shotnerr.herokuapp.com/'+data.shortUrl;
 			shortLink.style.display="block"
 			document.getElementById('copy').style.display = "block"
+			document.getElementById('gUrl').disabled = false
+			document.getElementById('gUrl').innerText = 'Generate'
+
+
 			
 		})
 		}	
+
+
 	
 		
 	}
