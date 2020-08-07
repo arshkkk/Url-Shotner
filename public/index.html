@@ -27,6 +27,13 @@
 			margin-top: 175px;
 			
 		}
+
+		#shortLink, #copy{
+			margin-top:10px;
+			display:none;
+
+		}
+	
 		
 	</style>
 </head>
@@ -51,7 +58,6 @@
                 <div class="col-12">
                     <h1>Url Shotner</h1>
                     <p>This is a Url Shotner Web Application,<br> You can Use it 
-						for Free, <br>Use it and try to Give some Feedback to <a href="#">Developer</a>
 					</p>
                 </div>
                 <div class="col-12">
@@ -66,17 +72,22 @@
 	</header>
 
 	<main class="container main">
-		<form action="/createShort" method="post" onsubmit="()=>fun('arsh')">
+		<form method="post" onsubmit="submitting();">
 			<div class="row justify-content-center">
 				<input id="link" placeholder="Enter Your Link or Url" name="originalUrl" type="text" class="form-control input-url col-12 col-md-10 text-center">
+				<div class="invalid-feedback">Url Not Valid </div>
+			</div>
+			<div class="row justify-content-center">
+				<input id="shortLink" type="text" class="form-control col-8 col-md-6 text-center" readonly>
+				<button type="button" id = "copy" onclick="copyText('shortLink')">Copy</button>
 			</div>
 			<div class="row justify-content-center mt-3">
-				<button	type="submit" type="submit" class="btn btn-success col-3">Generate Url</button>
+				<button type="submit" type="submit" class="btn btn-success col-3">Generate Url</button>
 			</div>
 		</form>
 			
 	</main>
-	<footer class="footer">
+	<!-- <footer class="footer">
         <div class="container">
             <div class="row">             
                 <div class="col-12 text-center">
@@ -89,13 +100,58 @@
                 </div>
            </div>
         </div>
-	</footer>
+	</footer> -->
 	
 	<script src="javascripts/jquery.slim.min.js"></script>
 	<script src="javascript/popper.min.js"></script>
 	<script src="javascripts/bootstrap.min.js"></script>
-	<script>
 
+
+<script>
+
+
+async function postData(){
+		var element = document.getElementById("link");
+
+		const response = await fetch('https://url-shotnerr.herokuapp.com/createShort',{
+			method:'POST',
+			headers:{
+				'Content-Type':'application/json'
+			},
+			body:JSON.stringify({originalUrl :element.value })
+		})
+
+		return response.json()
+		
+	}
+		
+		function submitting(){
+			event.preventDefault()
+			var element = document.getElementById("link");
+		
+		if(!validLink()){
+		element.classList.add("is-invalid");
+	}
+
+		else{
+			element.classList.remove("is-invalid");
+
+		postData()
+		.then(data=>{
+			console.log(data)
+			var shortLink = document.getElementById('shortLink');
+			shortLink.value = 'https://url-shotnerr.herokuapp.com/'+data.shortUrl;
+			shortLink.style.display="block"
+			document.getElementById('copy').style.display = "block"
+			
+		})
+		}	
+	
+		
+	}
+
+
+		
 		function validLink(){
 		var inputLink = document.getElementById("link")
 		var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
@@ -107,17 +163,21 @@
 		return !!pattern.test(inputLink.value);
 	}
 
-		const fun =(event)=>{
-			console.log('clicked')
-		if(!validLink()){
+function clearSelection()
+{
+if (window.getSelection) {window.getSelection().removeAllRanges();}
+else if (document.selection) {document.selection.empty();}
+}
+function copyText(id){
+    console.log(id)
+ var textArea = document.getElementById(id);
+ textArea.disabled=false;
+ textArea.select();
+ document.execCommand('copy');
+ clearSelection();
+ textArea.disabled=true;
 
-			alert('Not a valid Url')
-
-		}
-
-		event.preventDefault()
-		
-		}
+}
 		
 	</script>
 </body>

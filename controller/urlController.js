@@ -1,6 +1,7 @@
 var Url = require('../model/url')
 var axios = require('axios')
 var config = require('../config')
+var mongoose = require('mongoose')
 
 exports.createShort = (req,res,next)=>{
     if(req.body.originalUrl.includes('https://'))
@@ -9,12 +10,13 @@ exports.createShort = (req,res,next)=>{
     req.body.originalUrl=req.body.originalUrl.replace('http://','')
     console.log(req.body)
     Url.create({
-        originalUrl:req.body.originalUrl
+        originalUrl:req.body.originalUrl,
+        user: req.user._id
     },(err,url)=>{
         if(err) return res.json(500,{result:err, message:'Internal Server Error', success:false})
         if(!url) return res.json(500,{result:null, message:'Internal Server Error', success:false})
        
-        res.redirect('/')
+        res.json({success:true, shortUrl : url.shortUrl, originalUrl : url.originalUrl})
         // res.json(202,{result:url,message:"Url Successfully Saved",success:true})
     })
 
@@ -28,8 +30,8 @@ exports.incrementClick = (req,res,next)=>{
 }
 
 exports.dashboard = (req,res,next)=>{
-    
-    Url.find({},(err,urls)=>{
+    console.log(req.user._id)
+    Url.find({user:mongoose.Types.ObjectId(req.user._id)},(err,urls)=>{
         if(err) return res.json(500,{result:err, message:'Internal Server Error', success:false})
         res.render('dashboard',{layout:false,url:urls })
     })
@@ -37,7 +39,7 @@ exports.dashboard = (req,res,next)=>{
 }
 
 exports.allLinks = (req,res,next)=>{
-    Url.find({},(err,urls)=>{
+    Url.find({_id : req.user._id},(err,urls)=>{
         if(err) return res.json(500,{result:err, message:'Internal Server Error', success:false})
         res.json({res:urls})
     })

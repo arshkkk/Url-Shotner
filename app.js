@@ -28,7 +28,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser('s3cr3t-k3y'));
+app.use(cookieParser());
 
 app.use(express.static(path.resolve(__dirname,'public')))
 app.use('/',require('./routes/url'))
