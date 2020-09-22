@@ -31,6 +31,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(express.static(path.resolve(__dirname,'public')))
+app.get('/platform',(req,res,next)=>{
+  res.json({platform: process.platform})
+})
 app.use('/',require('./routes/url'))
 
 // catch 404 and forward to error handler
