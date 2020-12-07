@@ -3,192 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet"  href="stylesheets/bootstrap.min.css">
-	<title>Url Shotner</title>
-	<style>
-		body{
-			padding-top: 100px;
-		    z-index:0;
-			background: darkslategrey;
-		}
-		.input-url:focus,
-		.input-url{
-			font-size: x-large;
-			border-radius: 100px;
-			border:none;
-			color:whitesmoke;
-			background-color: rgba(117, 112, 112, 0.363);
-		}
-		.jumbotron{
-			background-color: whitesmoke;
-		}
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <title>Url Shotner</title>
+    <style>
+        body {
+            padding-top: 100px;
+            z-index: 0;
+            background: darkslategrey;
+        }
 
-		footer{
-			margin-top: 175px;
-			
-		}
+        .input-url:focus,
+        .input-url {
+            font-size: x-large;
+            border-radius: 100px;
+            border: none;
+            color: whitesmoke;
+            background-color: rgba(117, 112, 112, 0.363);
+        }
 
-		#shortLink, #copy{
-			margin-top:10px;
-			display:none;
+        .jumbotron {
+            background-color: whitesmoke;
+        }
 
-		}
-	
-		
-	</style>
+        footer {
+            margin-top: 175px;
+
+        }
+
+        #shortLink, #copy {
+            margin-top: 10px;
+            display: none;
+
+        }
+
+
+
+    </style>
 </head>
 <body>
-    <nav class="mr-auto navbar navbar-dark navbar-expand-sm bg-dark fixed-top">
-	<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#Navbar">
-	<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="container">
-	<div class="collapse navbar-collapse" id="Navbar">
-		<a class="navbar-brand" href="/">Url Shotner</a>
-		<ul class="navbar-nav mr-auto">
-		<li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>	
-	</ul>
-		</div>
-	</div>
-	</nav>
-
-	<header class="jumbotron">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <h1>Url Shotner</h1>
-                    <p>This is a Url Shotner Web Application,<br> You can Use it 
-					</p>
-                </div>
-                <div class="col-12">
-                </div>
-			</div>
-			<!-- <div class="row">
-				<div class="col-12">
-					<button class="btn-success btn">Sign Up</button>
-				</div>
-			</div> -->
+<nav class="mr-auto navbar navbar-dark navbar-expand-sm bg-dark fixed-top">
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#Navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+        <div class="collapse navbar-collapse" id="Navbar">
+            <a class="navbar-brand" href="/">Url Shotner</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+            </ul>
         </div>
-	</header>
+    </div>
+</nav>
 
-	<main class="container main">
-		<form method="post" onsubmit="submitting();">
-			<div class="row justify-content-center">
-				<input id="link" placeholder="Enter Your Link or Url" name="originalUrl" type="text" class="form-control input-url col-12 col-md-10 text-center">
-				<div class="invalid-feedback">Url Not Valid </div>
-			</div>
-			<div class="row justify-content-center">
-				<input id="shortLink" type="text" class="form-control col-8 col-md-6 text-center" readonly>
-				<button type="button" id = "copy" onclick="copyText('shortLink')">Copy</button>
-			</div>
-			<div class="row justify-content-center mt-3">
-				<button type="submit" type="submit" class="btn btn-success col-3" id="gUrl">Generate</button>
-			</div>
-		</form>
-			
-	</main>
-	<!-- <footer class="footer">
-        <div class="container">
-            <div class="row">             
-                <div class="col-12 text-center">
-                    <div>
-						<a href="http://instagram.com/arsh.kk">Instagram</a>
-						<span> 	</span>
-                        <a href="http://www.linkedin.com/in/">LinkedIn</a>
-                        <a href="mailto:arshdeep.cs.17@nitj.ac.in">Mail</a>
-                    </div>
-                </div>
-           </div>
+<header class="jumbotron">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h1>Url Shotner</h1>
+                <p>This is a Url Shotner Web Application,<br> You can Use it
+                </p>
+            </div>
+            <div class="col-12">
+            </div>
         </div>
-	</footer> -->
-	
-	<script src="javascripts/jquery.slim.min.js"></script>
-	<script src="javascript/popper.min.js"></script>
-	<script src="javascripts/bootstrap.min.js"></script>
+        <!-- <div class="row">
+            <div class="col-12">
+                <button class="btn-success btn">Sign Up</button>
+            </div>
+        </div> -->
+    </div>
+</header>
+
+<main class="container main">
+    <form method="post" id="url-form">
+        <div class="row justify-content-center">
+            <input id="link" placeholder="Enter Your Link or Url" name="originalUrl" type="text"
+                   class="form-control input-url col-12 col-md-10 text-center">
+            <div class="invalid-feedback">Url Not Valid</div>
+        </div>
+        <div class="row justify-content-center">
+            <input id="shortLink" type="text" class="form-control col-8 col-md-6 text-center" readonly>
+            <button type="button" id="copy" onclick="copyText('shortLink')">Copy</button>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <button type="submit" type="submit" class="btn btn-success col-3" id="gUrl">Generate</button>
+        </div>
+    </form>
+
+</main>
+<!-- <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div>
+                    <a href="http://instagram.com/arsh.kk">Instagram</a>
+                    <span> 	</span>
+                    <a href="http://www.linkedin.com/in/">LinkedIn</a>
+                    <a href="mailto:arshdeep.cs.17@nitj.ac.in">Mail</a>
+                </div>
+            </div>
+       </div>
+    </div>
+</footer> -->
+
+<script src="javascripts/jquery.slim.min.js"></script>
+<script src="javascript/popper.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
 
 
 <script>
 
 
-async function postData(){
-		var element = document.getElementById("link");
+    async function postData() {
+        var element = document.getElementById("link");
 
-		const response = await fetch('http://localhost:3000/createShort',{
-			method:'POST',
-			headers:{
-				'Content-Type':'application/json'
-			},
-			body:JSON.stringify({originalUrl :element.value })
-		})
+        const response = await fetch('https://url-shotnerr.herokuapp.com/createShort', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({originalUrl: element.value})
+        })
 
-		return response.json()
-		
-	}
-		
-		function submitting(){
-			document.getElementById('gUrl').disabled = true
-			document.getElementById('gUrl').innerText = 'Getting it short'
-			event.preventDefault()
-			var element = document.getElementById("link");
-		
-		if(!validLink()){
-		element.classList.add("is-invalid");
-		document.getElementById('generateUrl').disabled = false
+        return response.json()
 
-	}
+    }
 
-		else{
-			element.classList.remove("is-invalid");
+    function enableButton() {
+        document.getElementById('gUrl').disabled = false
+        document.getElementById('gUrl').innerText = 'Generate'
+    }
 
-		postData()
-		.then(data=>{
-			console.log(data)
-			var shortLink = document.getElementById('shortLink');
-			shortLink.value = 'https://localhost:3000/'+data.shortUrl;
-			shortLink.style.display="block"
-			document.getElementById('copy').style.display = "block"
-			document.getElementById('gUrl').disabled = false
-			document.getElementById('gUrl').innerText = 'Generate'
+    function disableButton() {
+        document.getElementById('gUrl').disabled = true
+        document.getElementById('gUrl').innerText = 'Getting it short'
+    }
+
+    document.getElementById("url-form").addEventListener("submit", function (event) {
+            event.preventDefault()
+
+            var element = document.getElementById("link");
+            disableButton()
+
+            if (!validLink()) {
+                element.classList.add("is-invalid");
+				enableButton()
+            } else {
+                element.classList.remove("is-invalid");
+                postData()
+                    .then(data => {
+                        console.log(data)
+                        var shortLink = document.getElementById('shortLink');
+                        shortLink.value = 'https://url-shotnerr.herokuapp.com/' + data.shortUrl;
+                        shortLink.style.display = "block"
+                        document.getElementById('copy').style.display = "block"
+						enableButton()
+                    })
+            }
+        }
+    )
 
 
-			
-		})
-		}	
+    function validLink() {
+        var inputLink = document.getElementById("link")
+        var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+            '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+        return !!pattern.test(inputLink.value);
+    }
 
+    function clearSelection() {
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        } else if (document.selection) {
+            document.selection.empty();
+        }
+    }
 
-	
-		
-	}
+    function copyText(id) {
+        console.log(id)
+        var textArea = document.getElementById(id);
+        textArea.disabled = false;
+        textArea.select();
+        document.execCommand('copy');
+        clearSelection();
+        textArea.disabled = true;
 
+    }
 
-		
-		function validLink(){
-		var inputLink = document.getElementById("link")
-		var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-		return !!pattern.test(inputLink.value);
-	}
-
-function clearSelection()
-{
-if (window.getSelection) {window.getSelection().removeAllRanges();}
-else if (document.selection) {document.selection.empty();}
-}
-function copyText(id){
-    console.log(id)
- var textArea = document.getElementById(id);
- textArea.disabled=false;
- textArea.select();
- document.execCommand('copy');
- clearSelection();
- textArea.disabled=true;
-
-}
-		
-	</script>
+</script>
 </body>
 </html>

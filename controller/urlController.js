@@ -36,8 +36,12 @@ exports.dashboard = (req, res, next) => {
 
         //shortening the length of original url so that they can fit in table easily
         urls = urls.map(url => {
-            url.originalUrl = url.originalUrl.substr(0, config.MAX_LENGTH_ORIGINAL_URL_IN_TABLE);
-            url.originalUrl += '.....'
+            let tempOriginalUrl = url.originalUrl.substr(0, config.MAX_LENGTH_ORIGINAL_URL_IN_TABLE);
+
+            if (url.originalUrl.length > config.MAX_LENGTH_ORIGINAL_URL_IN_TABLE)
+                tempOriginalUrl += '...'
+
+            url.originalUrl = tempOriginalUrl
             return url;
         })
         res.render('dashboard', {layout: false, urls})

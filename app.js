@@ -1,3 +1,4 @@
+require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -11,7 +12,7 @@ var app = express();
 var config = require('./config')
 
 //Setting Up mongodb using mongoose
-mongoose.connect(config.mongoUrl,
+mongoose.connect(process.env.mongoUrl,
   { 
     useNewUrlParser:true,
     useUnifiedTopology:true
