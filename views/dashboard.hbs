@@ -33,6 +33,17 @@
 		td a{
 			color:white;
 		}
+
+		.original_url{
+			
+		}
+
+		td{
+			  word-break: break-all;
+		}
+		table thead th:nth-child(2){
+			width: 50%;
+		}
 		
 	</style>
 </head>
@@ -68,16 +79,18 @@
 						<th scope="col">Original Url</th>
 						<th scope="col">Short Url</th>
 						<th scope="col">Clicks</th>
-
+						<th scope="col">Actions</th>
 					  </tr>
 					</thead>
 					<tbody>
-					  {{#each url}}
+					  {{#each urls}}
 					  <tr>
 						<th scope="row">{{@index}}</th>
-						<td><a href="http://{{this.originalUrl}}" target="_blank">{{this.originalUrl}}</a></td>
+						<td class="original_url"><a href="http://{{this.originalUrl}}" target="_blank">{{this.originalUrl}}</a></td>
 						<td><a href="/{{this.shortUrl}}" target="_blank">{{this.shortUrl}}</a></td>
 						<td>{{this.clicks}}</td>
+						<td><a href="/delete/{{this._id}}">Delete</a></td>
+
 					  </tr>
 					  {{/each}}
 					  

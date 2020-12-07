@@ -113,7 +113,7 @@
 async function postData(){
 		var element = document.getElementById("link");
 
-		const response = await fetch('https://url-shotnerr.herokuapp.com/createShort',{
+		const response = await fetch('http://localhost:3000/createShort',{
 			method:'POST',
 			headers:{
 				'Content-Type':'application/json'
@@ -144,7 +144,7 @@ async function postData(){
 		.then(data=>{
 			console.log(data)
 			var shortLink = document.getElementById('shortLink');
-			shortLink.value = 'https://url-shotnerr.herokuapp.com/'+data.shortUrl;
+			shortLink.value = 'https://localhost:3000/'+data.shortUrl;
 			shortLink.style.display="block"
 			document.getElementById('copy').style.display = "block"
 			document.getElementById('gUrl').disabled = false

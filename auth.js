@@ -1,21 +1,24 @@
 const User = require('./model/user')
+const {v4: uuidv4} = require('uuid')
 
-module.exports = (req,res,next)=>{
 
-    console.log(req.cookies)
+module.exports = (req, res, next) => {
 
-    if(req.cookies._id){
-       console.log('cookies present')
-        req.user = {_id : req.cookies._id}
+    if (req.cookies._id) {
+        req.user = {_id: req.cookies._id}
+
+        //checking for new updations that we made to deny duplication increments of click from same user
+        // if visitedUrls exists or not
+        if (!req.cookies.visitedUrls)
+            res.cookie('visitedUrls', JSON.stringify([]), {expires: new Date(253402300000000)})
+
+        next()
+
+    } else {
+        res.cookie('_id', uuidv4(), {expires: new Date(253402300000000)})
+        res.cookie('visitedUrls', JSON.stringify([]), {expires: new Date(253402300000000)})
         next()
 
     }
-    else {
-        console.log('no cookies')
-        User.create({})
-            .then(user=>{ req.user = {_id:user._id}; res.cookie('_id', user._id,{expires: new Date(253402300000000)} ); next();})
-        
-  
-    }
-  
+
 }

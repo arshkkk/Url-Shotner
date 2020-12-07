@@ -56,11 +56,12 @@
 					  </tr>
 					</thead>
 					<tbody>
-					  {{#each url}}
+					  {{#each urls}}
 					  <tr>
 						<th scope="row">{{@index}}</th>
 						<td>this.originalUrl</td>
 						<td>this.shortUrl</td>
+						<td><a href=`/delete/${this._id}`>Delete</a></td>
 					  </tr>
 					  {{/each}}
 					  
